@@ -12,7 +12,7 @@ public interface SpaceService {
     
     Optional<Space> getSpaceById(Long id);
 
-    public List<Space> getAllSpaces();
+    List<Space> getAllSpaces();
     
     // Space addMember(Long spaceId, Long nodeId);
     

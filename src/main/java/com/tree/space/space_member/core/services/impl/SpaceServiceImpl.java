@@ -32,11 +32,13 @@ public class SpaceServiceImpl implements SpaceService {
         Space createdSpace = spaceRepository.save(space);
         
         // Add creator as a member
-        // spaceMemberService.addMember(createdSpace.getId(), createdSpace.getCreator().getId(), true);
+        spaceMemberService.addMember(createdSpace.getId(), createdSpace.getCreator().getId(), true);
     
         return createdSpace;
     }
 
+    @Override
+    @Transactional(readOnly = true)
     public List<Space> getAllSpaces(){
         return spaceRepository.findAll();
     }

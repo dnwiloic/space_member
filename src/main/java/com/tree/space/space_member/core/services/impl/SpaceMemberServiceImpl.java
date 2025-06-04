@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -62,13 +63,17 @@ public class SpaceMemberServiceImpl implements SpaceMemberService {
         spaceMember = spaceMemberRepository.save(spaceMember);
         logger.info("space member {} created", spaceMember.getId() );
 
-        // space.getMembers().add(spaceMember);
-        // node.getMemberships().add(spaceMember);
+        space.getMembers().add(spaceMember);
+        logger.info("adding spaceMember {} to space  {}", spaceMember.getId(), space.getId() );
 
+        node.getMemberships().add(spaceMember);
+        logger.info("adding spaceMember {} to node  {}", spaceMember.getId(), node.getId() );
         
-        // nodeRepository.save(node);
+        nodeRepository.save(node);
+        logger.info("node saved" );
+        spaceRepository.save(space);
+        logger.info("space saved" );
         
-        logger.info(" Last save");
 
         return spaceMember;
     }

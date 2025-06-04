@@ -8,6 +8,9 @@ import com.tree.space.space_member.core.services.NodeService;
 import com.tree.space.space_member.core.services.SpaceMemberService;
 import com.tree.space.space_member.core.services.SpaceService;
 import lombok.RequiredArgsConstructor;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +27,7 @@ public class SpaceController {
     private final SpaceService spaceService;
     private final SpaceMemberService spaceMemberService;
     private final NodeService nodeService;
+    private static final Logger logger = LoggerFactory.getLogger(SpaceController.class);
 
     @PostMapping
     public ResponseEntity<SpaceDTO> createSpace(@RequestBody SpaceDTO spaceDTO) {
@@ -45,8 +49,12 @@ public class SpaceController {
 
     @GetMapping
     public ResponseEntity<List<SpaceDTO>> getAllSpaces() {
+        logger.info("recuperation de Spaces");
         List<Space> spaces = spaceService.getAllSpaces();
+
+        logger.info("Spaces: {}", spaces.toString());
         List<SpaceDTO> dtos = spaces.stream().map(SpaceController::convertToDTO).collect(Collectors.toList());
+        
         return ResponseEntity.ok(dtos);
     }
 

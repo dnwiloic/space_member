@@ -2,13 +2,16 @@ package com.tree.space.space_member.core.entities;
 
 import jakarta.persistence.*; 
 import lombok.AllArgsConstructor; 
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity 
 @Table(name = "space_members") 
-@Data 
+@Getter
+@Setter
 @NoArgsConstructor 
 @AllArgsConstructor 
 public class SpaceMember {
@@ -18,17 +21,18 @@ public class SpaceMember {
     
     @ManyToOne
     @JoinColumn(name = "space_id", nullable = false)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Space space;
     
     @ManyToOne
     @JoinColumn(name = "node_id", nullable = false)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Node node;
     
     @Column(name = "is_admin", nullable = false)
     private boolean isAdmin = false; // Par défaut, un membre n'est pas admin
     
 
-    // public boolean getIsAdmin(){
-    //     return this.isAdmin;
-    // }
     }

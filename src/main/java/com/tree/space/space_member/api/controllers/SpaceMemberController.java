@@ -3,6 +3,7 @@ package com.tree.space.space_member.api.controllers;
 import com.tree.space.space_member.api.dto.NodeDTO;
 import com.tree.space.space_member.api.dto.SpaceDTO;
 import com.tree.space.space_member.api.dto.SpaceMemberDTO;
+import com.tree.space.space_member.api.dto.SpaceMemberDTO;
 import com.tree.space.space_member.core.entities.Node;
 import com.tree.space.space_member.core.entities.Space;
 import com.tree.space.space_member.core.entities.SpaceMember;
@@ -68,8 +69,8 @@ public class SpaceMemberController {
 
         return new SpaceMemberDTO(
             spaceMember.getId(), 
-            SpaceController.convertToDTO(spaceMember.getSpace()),
-            NodeController.convertToDTO(spaceMember.getNode()),
+            spaceMember.getSpace().getId(),
+            spaceMember.getNode().getId(),
             spaceMember.isAdmin() );
     }
 }

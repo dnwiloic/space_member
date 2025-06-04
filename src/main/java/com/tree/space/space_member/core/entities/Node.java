@@ -2,15 +2,19 @@ package com.tree.space.space_member.core.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "nodes")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Node {
@@ -27,9 +31,13 @@ public class Node {
     
     // Relation avec les espaces créés par ce node
     @OneToMany(mappedBy = "creator", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Space> createdSpaces = new HashSet<>();
     
     // Relation one-to-many avec les SpaceMember 
     @OneToMany(mappedBy = "node", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<SpaceMember> memberships = new HashSet<>();
 } 
