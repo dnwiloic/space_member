@@ -7,28 +7,25 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080" # Map host port 8080 to container port 8080
+      - "8080:8080" 
     depends_on:
       - db
     environment:
-      # Ensure these match your Spring Boot application.properties/yml for database connection
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/space_member # Replace 'mydatabase' with your actual DB name
-      - SPRING_DATASOURCE_USERNAME=space_member       # Replace 'myuser' with your desired DB username
-      - SPRING_DATASOURCE_PASSWORD=space_tree1235   # Replace 'mypassword' with your desired DB password
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update  # Or create, create-drop, validate, none as per your needs
-      # Add any other environment variables your application needs
-      # - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/space_member 
+      - SPRING_DATASOURCE_USERNAME=space_member       
+      - SPRING_DATASOURCE_PASSWORD=space_tree1235   
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update 
 
   db:
-    image: postgres:15 # You can specify your preferred PostgreSQL version
+    image: postgres:15 
     ports:
-      - "5454:5432" # Map host port 5432 to container port 5432 (optional, for external access to DB)
+      - "5454:5432" 
     environment:
-      - POSTGRES_DB=space_member       # Replace 'mydatabase'
-      - POSTGRES_USER=space_member         # Replace 'myuser'
-      - POSTGRES_PASSWORD=space_tree1235 # Replace 'mypassword'
+      - POSTGRES_DB=space_member       
+      - POSTGRES_USER=space_member         
+      - POSTGRES_PASSWORD=space_tree1235 
     volumes:
-      - postgres_data:/var/lib/postgresql/data # Persist database data
+      - postgres_data:/var/lib/postgresql/data 
 
 volumes:
-  postgres_data: # Defines a named volume for data persistence
+  postgres_data: 

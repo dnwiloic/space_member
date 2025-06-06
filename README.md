@@ -1,4 +1,4 @@
-# Project Title (Replace with your project's name)
+# SPACE MEMBER
 
 This project is a Spring Boot application designed to be run with Docker and Docker Compose, using a PostgreSQL database.
 
