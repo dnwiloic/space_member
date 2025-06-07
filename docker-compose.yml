@@ -1,0 +1,31 @@
+
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" 
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/space_member 
+      - SPRING_DATASOURCE_USERNAME=space_member       
+      - SPRING_DATASOURCE_PASSWORD=space_tree1235   
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update 
+
+  db:
+    image: postgres:15 
+    ports:
+      - "5454:5432" 
+    environment:
+      - POSTGRES_DB=space_member       
+      - POSTGRES_USER=space_member         
+      - POSTGRES_PASSWORD=space_tree1235 
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+
+volumes:
+  postgres_data: 
